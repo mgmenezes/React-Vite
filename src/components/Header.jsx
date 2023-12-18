@@ -1,5 +1,11 @@
 import styles from "./Header.module.css";
 
+import igniteLogo from "../img/logo.svg";
 export function Header() {
-  return <strong className={styles.header}>Feed Timeline</strong>;
+  return (
+    <header className={styles.header}>
+      <img src={igniteLogo} alt="logotip" />
+      Feed Timeline
+    </header>
+  );
 }
