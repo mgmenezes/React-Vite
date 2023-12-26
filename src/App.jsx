@@ -5,7 +5,7 @@ import "./global.css";
 import styles from "./App.module.css";
 import { SideBar } from "./components/Sidebar";
 
-const posts = [
+export const posts = [
   {
     id: 1,
     author: {
@@ -42,7 +42,7 @@ const posts = [
     id: 2,
     author: {
       name: "John Doe",
-      avatarUrl: "https://github.com/mgmenezes.png",
+      avatarUrl: "https://github.com/maykbrito.png",
       role: "backend",
     },
     content: [
@@ -68,7 +68,7 @@ const posts = [
         content: "#rocketseat #novoprojeto #nlw",
       },
     ],
-    publishedAt: new Date("2023-12-24 20:00:00"),
+    publishedAt: new Date("2023-12-25 13:08:44"),
   },
 ];
 export function App() {
