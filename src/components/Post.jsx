@@ -19,6 +19,10 @@ export function Post({ author, publishedAt, content }) {
     setNewCommentText(event.target.value);
   };
 
+  const deleteComment = (comment) => {
+    console.log(`delete comment ${comment}`);
+  };
+
   // const publishedAtFormat = new Intl.DateTimeFormat("pt-BR", {
   //   dateStyle: "full",
   //   timeStyle: "long",
@@ -83,7 +87,13 @@ export function Post({ author, publishedAt, content }) {
 
       <div className={styles.commentList}>
         {comments.map((newComment) => {
-          return <Comment key={newComment.content} content={newComment} />;
+          return (
+            <Comment
+              onDeleteComment={deleteComment}
+              key={newComment.content}
+              content={newComment}
+            />
+          );
         })}
       </div>
     </article>
