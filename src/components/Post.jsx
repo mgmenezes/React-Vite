@@ -6,8 +6,9 @@ import { format, setDefaultOptions, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 export function Post({ author, publishedAt, content }) {
-  const [comments, setComments] = useState(["Post muito bom boy"]);
+  const [comments, setComments] = useState([]);
   const [newCommentText, setNewCommentText] = useState("");
+  const inNewCommentEmpty = newCommentText.length === 0;
 
   const handleCreatedNewComment = (event) => {
     event.preventDefault();
@@ -17,10 +18,19 @@ export function Post({ author, publishedAt, content }) {
 
   const handleNewCommentChange = (event) => {
     setNewCommentText(event.target.value);
+    event.target.setCustomValidity("");
   };
 
-  const deleteComment = (comment) => {
-    console.log(`delete comment ${comment}`);
+  const handleNewCommentInvalid = (event) => {
+    event.target.setCustomValidity("This field is required");
+  };
+
+  const deleteComment = (commentToDelete) => {
+    const commentsWithOutDelete = comments.filter((comment) => {
+      return comment !== commentToDelete;
+    });
+
+    setComments(commentsWithOutDelete);
   };
 
   // const publishedAtFormat = new Intl.DateTimeFormat("pt-BR", {
@@ -78,10 +88,14 @@ export function Post({ author, publishedAt, content }) {
           value={newCommentText}
           onChange={handleNewCommentChange}
           placeholder="Deixe um comentário"
+          onInvalid={handleNewCommentInvalid}
+          required
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={inNewCommentEmpty}>
+            Publicar
+          </button>
         </footer>
       </form>
 
